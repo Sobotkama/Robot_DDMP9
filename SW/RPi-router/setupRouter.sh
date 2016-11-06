@@ -32,7 +32,11 @@ dependenciesInstall () {            #checks for required packages and installs t
     done
 }
 
+copyFiles () {
+    checkRoot
+    cp -R root/* /
 
+}
 
 
 if containsArgument "--all" || containsArgument "-a" ; then     #checks for "all" or "a" in the arguments array
