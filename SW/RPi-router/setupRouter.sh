@@ -1,7 +1,7 @@
 #!/bin/bash
 version="1.0"
 arguments=( "$@" )      #gets all the arguments givven to the script, puts them into an array called "arguments"
-
+required=(vnstat)       #list of dependencies
 checkRoot () {                          #check if the script is run as root
     if [ "$(id -u)" != "0" ]; then
             echo "You are not root. Please run this script with "sudo" in front of it"
@@ -19,10 +19,18 @@ containsArgument () {
     fi
 }
 
-
-
-
-
+dependenciesInstall () {            #checks for required packages and installs them if they are missing
+    echo "Checking for prerequisites"
+    for i in "${required[@]}"                       #start checking
+    do
+        echo "Checking for $i"
+        if [ $(dpkg-query -W -f='${Status}' $i 2>/dev/null | grep -c "ok installed") -eq 0 ]; then           #asks dpkg wherther the package is install
+            echo "$i is not installed, attempting to install it now"
+            checkRoot                       #if a package is missing and script is not run as root
+            apt-get update && apt-get -y install $i
+        fi
+    done
+}
 
 
 
