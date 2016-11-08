@@ -1,7 +1,7 @@
 #!/bin/bash
 version="1.0"
 arguments=( "$@" )      #gets all the arguments givven to the script, puts them into an array called "arguments"
-required=(vnstat)       #list of dependencies
+required=(vnstat  usb-modeswitch wvdial bridge-utils)       #list of dependencies
 checkRoot () {                          #check if the script is run as root
     if [ "$(id -u)" != "0" ]; then
             echo "You are not root. Please run this script with "sudo" in front of it"
@@ -30,6 +30,8 @@ dependenciesInstall () {            #checks for required packages and installs t
             apt-get update && apt-get -y install $i
         fi
     done
+checkRoot
+echo "allow-hotplug eth1 iface eth1 inet dhcp" >> /etc/network/interfaces
 }
 
 copyFiles () {
