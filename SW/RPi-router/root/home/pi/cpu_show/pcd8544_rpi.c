@@ -102,11 +102,12 @@ int main (void)
 	  
 	  // build screen
 	  //LCDdrawstring(0, 0, "Raspberry Pi:");
-	  LCDdrawstring(0, 0, "Martin Sobotka");
+	  LCDdrawstring(0, 0, "Robesek Router");
 	  LCDdrawline(0, 10, 83, 10, BLACK);
 	  LCDdrawstring(0, 12, uptimeInfo);
 	  LCDdrawstring(0, 20, cpuInfo);
 	  LCDdrawstring(0, 28, ramInfo);
+	  LCDdrawstring(0, 36, ramInfo);
 	  LCDdisplay();
 	  
 	  delay(1000);
