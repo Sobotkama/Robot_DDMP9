@@ -107,7 +107,7 @@ int main (void)
 	  LCDdrawstring(0, 12, uptimeInfo);
 	  LCDdrawstring(0, 20, cpuInfo);
 	  LCDdrawstring(0, 28, ramInfo);
-	  LCDdrawstring(0, 36, ramInfo);
+	  //LCDdrawstring(0, 36, ramInfo);
 	  LCDdisplay();
 	  
 	  delay(1000);
